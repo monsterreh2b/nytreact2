@@ -1,6 +1,7 @@
 // Include React
 var React = require("react");
 var Search = require("./Search");
+var helpers = require("../utils/helpers");
 // This is the main component. It includes the banner and button.
 // Whenever you click the button it will communicate the click event to all other sub components.
 var Main = React.createClass({

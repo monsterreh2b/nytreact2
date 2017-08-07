@@ -2,7 +2,7 @@
 var axios = require("axios");
 
 // Geocoder API
-var geocodeAPI = "35e5548c618555b1a43eb4759d26b260";
+var authKey = "99078d6b0d7e43689d5f6f0942068cb8";
 
 // Helper functions for making API Calls
 var helper = {
@@ -13,14 +13,19 @@ var helper = {
         console.log(location);
 
         // Figure out the geolocation
-        var queryURL = "http://api.opencagedata.com/geocode/v1/json?query=" + location + "&pretty=1&key=" + geocodeAPI;
+        var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=" +
+            authKey + "&q=" + topic;
         return axios.get(queryURL).then(function(response) {
-            // If get get a result, return that result's formatted address property
-            if (response.data.results[0]) {
-                return response.data.results[0].formatted;
-            }
-            // If we don't get any results, return an empty string
-            return "";
+            console.log(response);
+
+            console.log(response.data.response.docs[0].headline.main);
+
+            console.log(response.data.response.docs[0].pub_date);
+
+            console.log(response.data.response.docs[0].web_url);
+
+            return response.data.results;
+
         });
     },
 
